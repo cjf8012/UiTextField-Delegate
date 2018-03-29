@@ -1,49 +1,51 @@
 //
 //  ViewController.swift
-//  UITextField Deligate01
+//  UITextField Delegate 1
 //
-//  Created by D7702_10 on 2018. 3. 22..
-//  Copyright © 2018년 ksh. All rights reserved.
+//  Created by D7702_09 on 2018. 3. 22..
+//  Copyright © 2018년 lse. All rights reserved.
 //
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate{
-    @IBOutlet weak var lab: UILabel!
-    @IBOutlet weak var labs: UITextField!
+class ViewController: UIViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var TextField: UITextField!
+    @IBOutlet weak var Hello: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        labs.delegate = self
-        labs.placeholder = "입력을 하세요!"
-        labs.clearButtonMode = UITextFieldViewMode.whileEditing
+        // Do any additional setup after loading the view, typically from a nib.
+        //Delegate 와 ViewController 연결한다.
+        TextField.delegate = self
         
-    }
-    @IBAction func bt(_ sender: Any) {
-        lab.text = "Hello, " + labs.text!
-        labs.text = ""
-        labs.resignFirstResponder()
-        //view를 터치하면 키패드가 내려감
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        labs.resignFirstResponder()
-        view.backgroundColor = UIColor.black
-    }
-        //UITextFieldDelegate Method
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        labs.resignFirstResponder()
-        view.backgroundColor = UIColor.red
-        return true
-        
-    }
-        // clear button을 눌렀을때 호출
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        labs.backgroundColor = UIColor.darkGray
-        return true
-        
+        TextField.placeholder = "입력해보세요!"
+        TextField.clearButtonMode = UITextFieldViewMode.whileEditing
     }
     
+    @IBAction func Click(_ sender: Any) {
+        Hello.text = "Hello " + TextField.text!
+        TextField.text = ""
+        TextField.resignFirstResponder()
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        TextField.resignFirstResponder()
+        view.backgroundColor = UIColor.green
+    }
+    // view를 터치하면 키패드가 내려감
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        TextField.resignFirstResponder()
+        view.backgroundColor = UIColor.red
+        return true
+    }
+    // Clear button을 눌렀을때 호출re
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.backgroundColor = UIColor.brown
+        return true
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
